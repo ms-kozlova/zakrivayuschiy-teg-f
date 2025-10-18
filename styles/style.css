@@ -9,8 +9,323 @@
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
-
 .page {
-  min-inline-size: 320px;
-  min-block-size: 100dvb;
+    min-inline-size: 320px;
+    min-block-size: 100dvb;
+    font-family: var(--main-font), serif;
+    font-variation-settings: 'wdth' var(--main-font-weight);
+    background-size: cover;
+    background-image: var(--bg-image);
+    display: grid;
+    justify-items: center;
+}
+
+.header {
+    display: grid;
+    background-color: var(--main-color);
+    border: 2px solid var(--accent-color);
+    font-family: var(--accent-font), serif;
+    text-align: center;
+    gap: 20px;
+    height: 327px;
+    margin: 100px 0;
+}
+
+.stretch_size {
+    inline-size: clamp(375px, 100%, 700px);
+}
+
+.header__title {
+    text-transform: uppercase;
+    font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);;
+    align-self: end;
+}
+
+.header__subtitle {
+    text-transform: uppercase;
+    font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+}
+
+.main__content {
+    display: grid;
+    gap: 50px;
+}
+
+.save__dialog {
+    display: none;
+    background-color: var(--main-color);
+    font-family: var(--accent-font), serif;
+    font-size: 14px;
+    text-align: left;
+    text-transform: uppercase;
+    max-width: 353px;
+    height: 191px;
+    padding: 30px 40px;
+    line-height: 150%;
+}
+
+.save__dialog .floppy-icon {
+    height: 39px;
+    justify-self: start;
+    align-self: center;
+}
+
+.save__dialog[open] {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.dialog__button {
+    background-color: var(--main-color);
+    border: 2px solid var(--accent-color);
+    width: 100%;
+    height: 38px;
+    grid-column: 1/3;
+    align-self: end;
+}
+
+.button_effects {
+    transition: box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.button_effects::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--accent-color);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.button_effects:hover::before {
+    transform: translateX(0);
+    background-color: var(--main-color);
+    mix-blend-mode: difference;
+}
+
+.button_effects:focus {
+    outline: none;
+    box-shadow: 2px 2px 0 var(--accent-color);
+}
+
+.save__dialog::backdrop {
+    background-color: rgb(0 0 0 / 0.3);
+}
+
+.main__section__block {
+    background-color: var(--main-color);
+    border: 2px solid var(--accent-color);
+}
+
+.main__section__block__title {
+    font-weight: var(--title-font-weight);
+    font-size: 18px;
+    padding: 4px 10px;
+    border-block-end: 2px solid var(--accent-color);
+}
+
+.main__section__block__content {
+    position: relative;
+}
+
+.main__section__label {
+    font-family: var(--accent-font), serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    position: absolute;
+    z-index: 2;
+    right: 25px;
+    top: 25px;
+    mix-blend-mode: hard-light;
+    text-shadow: -1px 0 var(--main-color),
+    0 1px var(--main-color),
+    1px 0 var(--main-color),
+    0 -1px var(--main-color);
+}
+
+@supports ((text-stroke: 1px var(--main-color)) or (-webkit-text-stroke: 1px var(--main-color))) {
+    .main__section__label {
+        -webkit-text-stroke: 1px var(--main-color);
+        text-stroke: 1px var(--main-color);
+        text-shadow: none;
+    }
+}
+
+.main__section__block__img {
+    object-fit: cover;
+    width: 100%;
+    display: block;
+}
+
+.main__section__block__text {
+    border-block-start: 2px solid var(--accent-color);
+    font-weight: var(--main-font-weight);
+    font-size: 18px;
+    line-height: 21px;
+    padding: 25px 25px 0;
+}
+
+.main__section__block__text p {
+    padding-bottom: 25px;
+}
+
+.button__text {
+    font-family: var(--accent-font), serif;
+}
+
+.card__like-button {
+    width: 130px;
+    height: 38px;
+    border: 2px solid var(--accent-color);
+    background-color: transparent;
+    transition: border 10s ease;
+}
+
+.card__icon-button:focus-visible {
+    outline: none;
+    border: 2px solid var(--accent-color);
+}
+
+.contour {
+    transition: fill 0.1s linear 0s;
+}
+
+.core {
+    transition: fill 0.3s linear 0.03s;
+}
+
+.main-body {
+    transition: fill 0.3s linear 0s;
+}
+
+.like-icon {
+    transform-origin: center;
+}
+
+.like-icon:hover .contour {
+    fill: var(--accent-color);
+}
+
+.like-icon:hover .core {
+    fill: var(--accent-color);
+    transition-delay: 0s;
+}
+
+.like-icon:hover .main-body {
+    fill: var(--accent-color);
+    transition-delay: 0.05s;
+}
+
+.like-icon:active .core {
+    fill: var(--animation-fill-color);
+    transition-delay: 0s;
+}
+
+.like-icon.is-liked .main-body {
+    fill: var(--animation-fill-color);
+    transition-delay: 0.05s;
+}
+
+.like-icon.is-liked .core {
+    fill: var(--animation-fill-color);
+    transition-delay: 0s;
+}
+
+.like-icon:active .main-body {
+    fill: var(--animation-fill-color);
+    transition-delay: 0.05s;
+}
+
+.like-icon.is-liked .contour {
+    fill: var(--animation-fill-color);
+    transition-duration: 0.3s;
+    transition-delay: 0.06s;
+}
+
+.like-icon.is-liked .sparks {
+    animation: heart_sparks 0.3s 0.3s ease-in;
+}
+
+.like-icon.is-liked .heart {
+    animation: heart 0.3s 0.1s ease-in;
+}
+
+.sparks {
+    opacity: 0;
+}
+
+.main__section__block__reaction {
+    display: flex;
+    justify-content: end;
+    margin: 0 25px 25px;
+    gap: 12px;
+}
+
+.card__icon-button {
+    background-color: var(--main-color);
+    border: none;
+}
+
+.first__sprint_start img {
+    filter: saturate(20%);
+}
+
+.first__sprint_end img {
+    filter: saturate(500%);
+}
+
+.second__sprint_start img {
+    filter: hue-rotate(30deg);
+}
+
+.second__sprint_end img {
+    filter: invert(0.8);
+}
+
+.third__sprint_start img {
+    filter: sepia(80%);
+}
+
+.third__sprint_end img {
+    filter: blur(0.3rem);
+}
+
+.current__sprint img {
+    filter: hue-rotate(90deg) opacity(0.7) blur(1px);;
+}
+
+.footer {
+    font-size: 14px;
+    display: grid;
+    justify-content: center;
+}
+
+.footer .floppy-icon {
+    height: 28px;
+    justify-self: center;
+    align-self: center;
+}
+
+.footer__button {
+    display: grid;
+    background-color: var(--main-color);
+    width: clamp(306px, calc(306px + 29 * ((100vw - 375px) / 1065)), 335px);
+    height: 84px;
+    border: 2px solid var(--accent-color);
+    margin: 50px 0 100px;
+    grid-template-columns: 1fr 5fr;
+    justify-items: center;
+    align-items: center;
+    line-height: 90%;
+    padding: 0;
+}
+
+@media (width <= 375px) {
+    .footer__button {
+        grid-template-columns: 1fr;
+    }
 }
