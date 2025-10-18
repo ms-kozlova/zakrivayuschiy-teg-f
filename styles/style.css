@@ -121,7 +121,7 @@
 }
 
 .main__section__block__title {
-    font-weight: var(--title-font-weight);
+    font-variation-settings: 'wdth' var(--title-font-weight);
     font-size: 18px;
     padding: 4px 10px;
     border-block-end: 2px solid var(--accent-color);
